@@ -5,12 +5,13 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
 import main.GamePanel;
 import main.KeyHandlers;
-
+import java.awt.AlphaComposite;
 public class Player extends Entity {
 	
 	GamePanel gp;
@@ -19,7 +20,10 @@ public class Player extends Entity {
 	public final int screenX;
 	public final int screenY;
 	
-	int hasKey = 0;
+	public boolean attackCancel = false;
+	public ArrayList<Entity> inventory = new ArrayList<>();
+	public final int maxInventorySize = 20;
+	public int hasKey = 0;
 	
 	public Player(GamePanel gp, KeyHandlers keyH) {
 		this.gp = gp;
@@ -38,6 +42,7 @@ public class Player extends Entity {
 		
 		setDafaultValues();
 		getPlayerImage();
+		setItems();
 		
 	}
 	
@@ -62,6 +67,14 @@ public class Player extends Entity {
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void setItems() {
+		
+	//	inventoryd.add(currentWeapon);
+	//	inventory.add(currentShield);
+	//	inventory.add(new OBJ_Key(gp));
+	//	inventory.add(new OBJ_Key(gp));
 	}
 	
 	public void update() {
@@ -128,15 +141,32 @@ public class Player extends Entity {
 			String objectName = gp.obj[i].name;
 			switch(objectName) {
 			case "Key":
+				gp.playSE(1);
 				hasKey++;
 				gp.obj[i] = null;
+				gp.ui.showMessage("You got a key!");
 				break;
 			case "Door":
 				if(hasKey > 0) {
+					gp.playSE(3);
 					gp.obj[i] = null;
 					hasKey--;
+					gp.ui.showMessage("You opened the door!");
+				}
+				else {
+					gp.ui.showMessage("You need a key!");
 				}
 				break;
+			case "Boots":
+				gp.playSE(2);
+				speed += 1;
+				gp.obj[i] = null;
+				gp.ui.showMessage("Speed up!");
+				break;
+			case "Chest":
+				gp.ui.gameFinished = true;
+				gp.stopMusic();
+				gp.playSE(4);
 			}
 		}
 			
