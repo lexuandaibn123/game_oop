@@ -21,7 +21,7 @@ public class Main {
 		gamePanel.setupGame();
 		gamePanel.startGameThread();
 		/**
-		 * main file
+		 * main file main file
 		 * */
 	}
 }
