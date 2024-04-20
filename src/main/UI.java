@@ -150,7 +150,7 @@ public class UI {			//Giao diện
 			g2.drawString(text,x,y);
 			if(commandNum==3){
 				g2.drawString(">",x-gp.tileSize,y);
-			}
+			}// T la dat
 		}
 	}
 	
