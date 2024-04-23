@@ -19,6 +19,8 @@ public class UI {			//Giao diện
 	public String message = "";
 	int messageCounter = 0;
 	public boolean gameFinished = false;
+	public int commandNum=0;
+	public int titleScreen=0;//0:titleScreen1 ; 1:titleScreen2 ; 2:titleScreen3
 	
 	public int slotCol = 0;
 	public int slotRow = 0;
@@ -44,6 +46,11 @@ public class UI {			//Giao diện
 		
 		g2.setFont(arial_40);
 		g2.setColor(Color.white);
+		//TITLE STATE
+		if(gp.gameState==gp.titleState){
+			drawTitleScreen();
+
+		}
 		
 		//PLAY STATE
 		if(gp.gameState == gp.playState) {
@@ -59,6 +66,92 @@ public class UI {			//Giao diện
 			drawInventory();
 		}
 			
+	}
+	public void drawTitleScreen()
+	{
+		if(titleScreen==0){
+			g2.setColor(new Color(0,0,0));
+			g2.fillRect(0,0,gp.screenWidth, gp.screenHeight);
+			//TITLE SCREEN
+			g2.setFont(g2.getFont().deriveFont(Font.BOLD,96F));
+			String text="Blue Boy Adventure";
+			int x=getXforCenteredText(text);
+			int y= gp.tileSize*3;
+			//SHADOW
+			g2.setColor(Color.gray);
+			g2.drawString(text,x+5,y+5);
+			//MAIN COLOR
+			g2.setColor(Color.white);
+			g2.drawString(text,x,y);
+			// PLAY BOY IMAGE
+			x=gp.screenWidth/2-gp.tileSize*2/2;
+			y+= gp.tileSize*2;
+			g2.drawImage(gp.player.down1,x,y,gp.tileSize*2,gp.tileSize*2,null);
+			//MENU
+			g2.setFont(g2.getFont().deriveFont(Font.BOLD,48F));
+			text="New Game";
+			x=getXforCenteredText(text);
+			y+=gp.tileSize*4;
+			g2.drawString(text,x,y);
+			if(commandNum==0){
+				g2.drawString(">",x-gp.tileSize,y);
+			}
+
+			text="Load Game";
+			x=getXforCenteredText(text);
+			y+=gp.tileSize;
+			g2.drawString(text,x,y);
+			if(commandNum==1){
+				g2.drawString(">",x-gp.tileSize,y);
+			}
+
+			text="Quit";
+			x=getXforCenteredText(text);
+			y+=gp.tileSize;
+			g2.drawString(text,x,y);
+			if(commandNum==2){
+				g2.drawString(">",x-gp.tileSize,y);
+			}
+		}
+		else if(titleScreen==1){
+			//CLASS SELECTION SCREEN
+			g2.setColor(Color.white);
+			g2.setFont(g2.getFont().deriveFont(42F));
+			String text="Select Your class";
+			int x=getXforCenteredText(text);
+			int y=gp.tileSize*3;
+			g2.drawString(text,x,y);
+
+			text="Fighter";
+			x=getXforCenteredText(text);
+			y+=gp.tileSize*3;
+			g2.drawString(text,x,y);
+			if(commandNum==0){
+				g2.drawString(">",x- gp.tileSize,y);
+			}
+
+			text="Thief";
+			x=getXforCenteredText(text);
+			y+=gp.tileSize;
+			g2.drawString(text,x,y);
+			if(commandNum==1){
+				g2.drawString(">",x-gp.tileSize,y);
+			}
+			text="Sorcerer";
+			x=getXforCenteredText(text);
+			y+=gp.tileSize;
+			g2.drawString(text,x,y);
+			if(commandNum==2){
+				g2.drawString(">",x-gp.tileSize,y);
+			}
+			text="Back";
+			x=getXforCenteredText(text);
+			y+=gp.tileSize*3;
+			g2.drawString(text,x,y);
+			if(commandNum==3){
+				g2.drawString(">",x-gp.tileSize,y);
+			}// T la dat
+		}
 	}
 	
 	public void drawPauseScreen() {
