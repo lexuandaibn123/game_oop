@@ -1,17 +1,25 @@
 package object;
+
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class OBJ_Chest extends SuperObject {				//Rương
+import entity.Entity;
+import main.GamePanel;
+
+public class OBJ_Chest extends Entity{
+
+	
+	public OBJ_Chest(GamePanel gp) {
+		super(gp);
 		
-	public OBJ_Chest() {
-			
-		name = "Chest";
-		try {
-			image = ImageIO.read(getClass().getResourceAsStream("/objects/chest.png"));
-		}catch(IOException e) {
-			e.printStackTrace();
-		}
+		
+		type = type_chest;
+		name = "chest";
+		
+		
+		down1 = setup("/objects/chest", gp.tileSize, gp.tileSize);
+		down2 = setup("/objects/chest2", gp.tileSize, gp.tileSize);
+		price = 15;
 	}
 }
