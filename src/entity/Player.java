@@ -62,6 +62,8 @@ public class Player extends Entity{
         
         setDefaultValues();
         getPlayerImage();
+        getGuardImage();
+   
       
         setItems();
     }
@@ -114,6 +116,8 @@ public class Player extends Entity{
     public int getAttack() {
     	if(currentWeapon == null) return 0;
     	attackArea = currentWeapon.attackArea;
+    	motion1_duration=currentWeapon.motion1_duration;
+    	motion2_duration=currentWeapon.motion2_duration;
     	return strength * currentWeapon.attackValue;
     }
     public int getDefense()
@@ -166,7 +170,7 @@ public class Player extends Entity{
     	
         
     }
-    
+     
 
     
     public void getPlayerAttackImage() {
@@ -196,7 +200,12 @@ public class Player extends Entity{
 
     	
         }
-    
+    public void getGuardImage() {
+    	 guardUp = setup("/player/upgua", gp.tileSize, gp.tileSize);
+    	 guardDown = setup("/player/downgua", gp.tileSize, gp.tileSize);
+    	 guardLeft = setup("/player/leftgua", gp.tileSize, gp.tileSize);
+    	 guardRight = setup("/player/rightgua", gp.tileSize, gp.tileSize);
+    }
     
     public void update(){
     	
@@ -204,7 +213,9 @@ public class Player extends Entity{
     		
     		attacking();
     	}
-    	
+    	else if(keyH.spacePressed==true) {
+    		guarding=true;
+    	}
     	else { 
     		if(moving == false) {
     		
@@ -231,16 +242,8 @@ public class Player extends Entity{
     	        moving = true;
     	          	        
     		 }
-    	        
-//    	        else {
-//    	        	standCounter ++;
-//    	        	
-//    	        	if(standCounter == 20) {
-//    	        		spriteNum = 1;
-//    	        		standCounter = 0;
-//    	        	}
-//    	        } 		 
-    	}
+    		
+   	      
     	if(moving == true) {
     		
     		// CHECK TILE COLLISION
@@ -281,7 +284,7 @@ public class Player extends Entity{
             }
             
             if(keyH.enterPressed == true && attackCanceled == false && currentWeapon != null) {
-//            	gp.playSE(7);
+             	//gp.playSE(7);
             	attacking = true;
             	spriteCounter = 0;
             }
@@ -289,7 +292,7 @@ public class Player extends Entity{
             attackCanceled = false;
             
         	gp.keyH.enterPressed = false;
-            
+            guarding=false;
             spriteCounter++;
             if(spriteCounter > 8){
                     if(spriteNum ==1){
@@ -301,6 +304,7 @@ public class Player extends Entity{
                     }
                     spriteCounter = 0;
             }
+            
             
 //            pixelCounter += speed;
 //            
@@ -366,60 +370,8 @@ public class Player extends Entity{
     	}
        
     }
-    
-    public void attacking() {
-    	
-    	spriteCounter ++;
-    	
-    	if(spriteCounter <= 5) {
-    		spriteNum = 1;
-    	}
-    	if(spriteCounter > 5 && spriteCounter <= 10) {
-    		spriteNum = 2;
-    		
-    		// Save the current worldX, worldY, solidArea
-    		int currentWorldX = super.getWorldX();
-    		int currentWorldY = super.getWorldY();
-    		int solidAreaWidth = solidArea.width;
-    		int solidAreaHeight = solidArea.height;
-    		
-    		// Adjust player's worldX, Y for the attackArea
-    		switch(direction) {
-    		case "up": worldY -= attackArea.height; break;
-    		case "down": worldY += attackArea.height; break;
-    		case "right": worldX += attackArea.width; break;
-    		case "left": worldX -= attackArea.width; break;
-    		}
-    		
-    		// attackArea becomes solidArea
-    		solidArea.width = solidAreaWidth;
-    		solidArea.height = solidAreaHeight;
-    		
-    		// check monster collision with the updated worldX, worldY, and solidArea
-    		int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
-    		damageMonster(monsterIndex, attack, currentWeapon.knockBackPower);
-    		
-    		//
-    		int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
-    		damageInteractiveTile(iTileIndex);
-    		
-    		int projectTileIndex = gp.cChecker.checkEntity(this, gp.projectile);
-    		damageProjectTile(projectTileIndex);
-    		
-    		// After checking collision, restore the original data
-    		worldX = currentWorldX;
-    		worldY = currentWorldY;
-    		solidArea.width = solidAreaWidth;
-    		solidArea.height = solidAreaHeight;
-    		
-    	}
-    	if(spriteCounter > 15) {
-    		spriteNum = 1;
-    		spriteCounter = 0;
-    		attacking = false;
-    	}
     }
-    
+   
     public void pickUpObject(int i) {
     	
     	if(i != 999) {
@@ -540,7 +492,7 @@ public class Player extends Entity{
     	}
     }
     
-    public void damageMonster(int i, int attack, int knockBackPower) {
+    public void damageMonster(int i,Entity attacker, int attack, int knockBackPower) {
     	if(i != 999) {
     		
     		if(gp.monster[gp.currentMap][i].invincible == false) {
@@ -550,7 +502,7 @@ public class Player extends Entity{
     			gp.playSE(5);
     			
     			if(knockBackPower > 0) {
-    				knockBack(gp.monster[gp.currentMap][i], currentWeapon.knockBackPower);
+    				setKnockBack(gp.monster[gp.currentMap][i],attacker, knockBackPower);
     			}
     			
     			
@@ -656,7 +608,7 @@ public class Player extends Entity{
     			
     			currentWeapon = selectedItem;
     			attack = getAttack();
-    			getPlayerImage();
+    			
     			getPlayerAttackImage();
     		}
     		if(selectedItem.type == type_shield) {
@@ -677,14 +629,7 @@ public class Player extends Entity{
     	}
     }
     
-    public void knockBack(Entity entity, int knockBackPower) {
-    	
-    	entity.direction = direction;
-    	entity.speed += knockBackPower;
-    	entity.knockBack = true;
-    	
-    	
-    }
+ 
     
     public int searchItemInInventory(String itemName) {
     	
@@ -748,6 +693,9 @@ public class Player extends Entity{
         		  if(spriteNum == 1){image = attackUp1;}
         		  if(spriteNum==2){image = attackUp2; }
         	  }
+        	  if(guarding==true) {
+        		  image=guardUp;
+        	  }
                  break;
           case "down":
         	  if(attacking == false) {
@@ -757,6 +705,9 @@ public class Player extends Entity{
         	  if(attacking == true) {
         		  if(spriteNum == 1){ image = attackDown1;}
                   if(spriteNum==2){image = attackDown2; }
+        	  }
+        	  if(guarding==true) {
+        		  image=guardDown;
         	  }
                  break;
           case "left":    
@@ -769,6 +720,9 @@ public class Player extends Entity{
         		  if(spriteNum == 1){ image = attackLeft1;}
                   if(spriteNum==2){image = attackLeft2; }
         	  }
+        	  if(guarding==true) {
+        		  image=guardLeft;
+        	  }
                  break;
           case "right":
         	  if(attacking == false) {
@@ -778,6 +732,9 @@ public class Player extends Entity{
         	  if(attacking == true) {
         		  if(spriteNum == 1){ image = attackRight1;}
                   if(spriteNum==2){image = attackRight2; }
+        	  }
+        	  if(guarding==true) {
+        		  image=guardRight;
         	  }
                  break;
           	}//end switch

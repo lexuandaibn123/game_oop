@@ -31,6 +31,7 @@ public class MON_OrangeSlime extends Entity {
 		attack = 2;
 		defense = 0;
 		exp = 2;
+		projectile = new OBJ_Rock(gp);
 		mana = 0;
 		
 		

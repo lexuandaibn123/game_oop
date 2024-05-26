@@ -13,7 +13,7 @@ public class KeyHandler implements KeyListener{
    public boolean leftPressed;
    public boolean downPressed;
    public boolean enterPressed;
-   public boolean shotKeyPressed;
+   public boolean shotKeyPressed,spacePressed;
    
    //DEBUG
    boolean showDebugText = false;
@@ -237,11 +237,13 @@ public class KeyHandler implements KeyListener{
         if(code == KeyEvent.VK_F) {
         	shotKeyPressed = true;
         }
-        
+        if(code == KeyEvent.VK_SPACE) {
+        	spacePressed=true;
+        }
         if(code == KeyEvent.VK_ESCAPE) {
         	gp.gameState = gp.optionsState;
         }
-        
+       
         if(code == KeyEvent.VK_T) {
         	if(showDebugText == false) {
         		showDebugText = true;
@@ -523,7 +525,12 @@ public class KeyHandler implements KeyListener{
             if(code == KeyEvent.VK_F) {
             	shotKeyPressed = false;
             }
-          
+            if(code == KeyEvent.VK_ENTER) {
+            	enterPressed = false;
+            }
+            if(code == KeyEvent.VK_SPACE) {
+            	spacePressed = false;
+            }
     }
         
 }

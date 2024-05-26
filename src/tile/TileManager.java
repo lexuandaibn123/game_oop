@@ -32,6 +32,7 @@ public class TileManager {
         
         
         getTileImage();
+       
         loadMap("/maps/world03.txt", 0);
         loadMap("/maps/worldmap 2.txt", 1);
  

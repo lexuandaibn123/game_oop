@@ -17,6 +17,8 @@ public class OBJ_Sword_Normal extends Entity{
 		attackArea.height = 24;
 		price = 15;
 		knockBackPower = 3;
+		motion1_duration=2;
+		motion2_duration=10;
 	}
 
 }
