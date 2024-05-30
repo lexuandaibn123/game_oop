@@ -201,10 +201,10 @@ public class Player extends Entity{
     	
         }
     public void getGuardImage() {
-    	 guardUp = setup("/player/upgua", gp.tileSize, gp.tileSize);
-    	 guardDown = setup("/player/downgua", gp.tileSize, gp.tileSize);
-    	 guardLeft = setup("/player/leftgua", gp.tileSize, gp.tileSize);
-    	 guardRight = setup("/player/rightgua", gp.tileSize, gp.tileSize);
+    	 guardUp = setup("/player/upguard", gp.tileSize*5, gp.tileSize*5);
+    	 guardDown = setup("/player/downguard", gp.tileSize*5, gp.tileSize*5);
+    	 guardLeft = setup("/player/leftguard", gp.tileSize*5, gp.tileSize*5);
+    	 guardRight = setup("/player/rightguard", gp.tileSize*5, gp.tileSize*5);
     }
     
     public void update(){
@@ -353,6 +353,7 @@ public class Player extends Entity{
     		invincibleCounter ++;
     		if(invincibleCounter > 60) {
     			invincible = false;
+    			transparent=false;
     			invincibleCounter = 0;
     		}
     	}
@@ -481,12 +482,13 @@ public class Player extends Entity{
     		if(invincible == false && gp.monster[gp.currentMap][i].dying == false) {
     			
     			int damage = gp.monster[gp.currentMap][i].attack - defense;
-    			if(damage < 0) damage = 0;
+    			if(damage < 1) damage = 1;
     			
     				gp.playSE(6);
     				life -= damage;
     			
     			invincible = true;
+    			transparent=true;
     		}
     		
     	}
@@ -756,7 +758,7 @@ public class Player extends Entity{
         	  	y = gp.screenHeight - (gp.worldHeight - worldY) - 15;
       	}
       	
-          if(invincible == true) {
+          if(transparent == true) {
         	  g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
           }
           

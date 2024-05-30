@@ -48,6 +48,7 @@ public class Entity {
     public boolean knockBack = false;
     public String knockBackDirection;
     public boolean guarding=false;
+    public boolean transparent=false;
 	// COUNTER
 	public int spriteCounter = 0;
 	public int actionLockCounter = 0;
@@ -439,6 +440,20 @@ actionLockCounter ++;
         	}
 		
     }
+    public String getOppositeDirection(String direction) {
+    	String oppositedirection ="";
+    	switch(direction) {
+    	case "up": oppositedirection="down";
+    		break;
+    	case "down":oppositedirection="up";
+    		break;
+    	case "left":oppositedirection="right";
+    		break;
+    	case "right":oppositedirection="left";
+    		break;
+    	}
+    	return oppositedirection;
+    }
  public void attacking() {
     	
     	spriteCounter ++;
@@ -502,15 +517,25 @@ actionLockCounter ++;
     public void damagePlayer(int attack) {
 
 		if(gp.player.invincible == false) {
-			// we can give damage
-			if(gp.player.keyH.shotKeyPressed == false) {
-				gp.playSE(6);
-			}
-			
-			
 			int damage = attack - gp.player.defense;
+			//get an opposite direction of this attacker
+			String canGuardDirection=getOppositeDirection(direction);
+			if(gp.player.guarding==true&&gp.player.direction.equals(canGuardDirection)) {
+				damage/=3;
+				gp.playSE(15);
+			}
+			else {
+				//not guarding
+				gp.playSE(6);
+				if(damage < 1) damage = 1;
+			}
+			// we can give damage
+					
+			
 			if(damage < 0) damage = 0;
 			
+			if(damage !=0) {
+				gp.player.transparent=true;		}
 			gp.player.life -= damage;
 			gp.player.invincible = true;
 			

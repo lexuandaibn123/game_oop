@@ -23,10 +23,10 @@ public MON_Orc(GamePanel gp) {
 		
 		defaultSpeed = 1;
 		speed = defaultSpeed;
-		maxLife = 8;
+		maxLife = 1;
 		life = maxLife;
-		attack = 4;
-		defense = 10;
+		attack = 3;
+		defense = 1;
 		exp = 4;
 		mana = 0;
 		
