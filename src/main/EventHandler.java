@@ -76,14 +76,14 @@ public class EventHandler {
 			else if (hit(1, 1, 24, "left") == true || hit(1, 1, 25, "left") == true) {
 
 				teleport(0, 48, 44, gp.outside);
-			} else if (hit(0, 12, 14, "any") == true) {
+			} else if (hit(0, 1, 4, "any") == true) {
 
 				teleport(2, 9, 41, gp.dungeon);
 			}
 
 			else if (hit(2, 9, 41, "any") == true) {
 
-				teleport(0, 12, 14, gp.outside);
+				teleport(0, 1, 4, gp.outside);
 			}
 
 			else if (hit(1, 28, 1, "any") == true || hit(1, 28, 2, "any") == true) {
