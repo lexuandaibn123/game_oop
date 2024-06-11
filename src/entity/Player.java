@@ -53,12 +53,12 @@ public class Player extends Entity{
         // SOLID AREA
         solidArea = new Rectangle();
         
-        solidArea.x = 8;
-        solidArea.y = 16;
+        solidArea.x = 10;
+        solidArea.y = 15;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-        solidArea.width = 28;
-        solidArea.height = 8;
+        solidArea.width = 15;
+        solidArea.height = 20;
         
         setDefaultValues();
         getPlayerImage();
@@ -79,7 +79,7 @@ public class Player extends Entity{
         
         gp.currentMap = 0;
     	
-        defaultSpeed = 7;
+        defaultSpeed = 6;
         speed = defaultSpeed;
         direction = "down";
         
