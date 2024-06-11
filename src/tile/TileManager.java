@@ -34,7 +34,6 @@ public class TileManager {
 		loadMap("/maps/world03.txt", 0);
 		loadMap("/maps/worldmap 2.txt", 1);
 		loadMap("/maps/dungeon01.txt", 2);
-
 	}
 
 	public void getTileImage() {
@@ -194,7 +193,7 @@ public class TileManager {
 			// worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
 			// worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
 			// worldY - gp.tileSize < gp.player.worldY + gp.player.screenY ) {
-			//
+			
 			// g2.drawImage(tile[tileNum].image, (int) screenX, (int) screenY, gp.tileSize,
 			// gp.tileSize, null);
 			// }
@@ -202,11 +201,11 @@ public class TileManager {
 			// gp.player.screenY > gp.player.worldY ||
 			// rightOffset > gp.worldHeight - gp.player.worldX ||
 			// bottomOffset > gp.worldHeight - gp.player.worldY) {
-			//
+			
 			// g2.drawImage(tile[tileNum].image, (int) screenX, (int) screenY, gp.tileSize,
 			// gp.tileSize, null);
 			// }
-			//
+			
 			g2.drawImage(tile[tileNum].image, (int) screenX, (int) screenY, gp.tileSize, gp.tileSize, null);
 			worldCol++;
 

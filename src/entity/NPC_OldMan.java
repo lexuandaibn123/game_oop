@@ -59,19 +59,6 @@ public class NPC_OldMan extends Entity {
     }
     
     public void setAction() {
-    	
-    	if(onPath == true) {
-    		
-//    		int goalCol = 15;
-//    		int goalRow = 20;
-    		
-    		int goalCol = (gp.player.worldX + gp.player.solidAreaDefaultX)/gp.tileSize;
-    		int goalRow = (gp.player.worldY + gp.player.solidAreaDefaultY)/gp.tileSize;
-    		
-    		searchPath(goalCol, goalRow);
- 
-    	}
-    	else {
     		actionLockCounter ++;
         	
         	if(actionLockCounter == 120) {
@@ -97,8 +84,6 @@ public class NPC_OldMan extends Entity {
         	}
      
     	} 	
-    }
-    
     public void speak() {
     	
     	// Do this character specific stuff
