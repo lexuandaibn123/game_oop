@@ -49,7 +49,7 @@ public class NPC_OldMan extends Entity {
     public void setDialogue() {
     	dialogues[NVcounter][0] = "Go go go";
     	dialogues[0][0] = "OMG! Why are you here?";
-    	dialogues[0][1] = "This is dangerous";
+    	dialogues[0][1] = "This is dangerous Bach dep trai vcl";
     	dialogues[0][2] = "Take this sword\n and kill all monsters.";
     	dialogues[0][3] = "Let's go";
     	dialogues[1][0] = "Let's found the axe and \n go back!";
