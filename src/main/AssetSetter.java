@@ -100,16 +100,6 @@ public class AssetSetter {
 		gp.monster[numMap][i].worldX = gp.tileSize * 30;
 		gp.monster[numMap][i].worldY = gp.tileSize * 4;
 		i++;
-		
-		gp.monster[numMap][i] = new MON_Orc(gp);
-		gp.monster[numMap][i].worldX = gp.tileSize * 30;
-		gp.monster[numMap][i].worldY = gp.tileSize * 4;
-		i++;
-    
-		gp.monster[numMap][i] = new MON_Orc(gp);
-		gp.monster[numMap][i].worldX = gp.tileSize * 31;
-		gp.monster[numMap][i].worldY = gp.tileSize * 4;
-		i++;
     
 		gp.monster[numMap][i] = new MON_Orc(gp);
 		gp.monster[numMap][i].worldX = gp.tileSize * 32;
@@ -120,37 +110,30 @@ public class AssetSetter {
 		gp.monster[numMap][i].worldX = gp.tileSize * 33;
 		gp.monster[numMap][i].worldY = gp.tileSize * 4;
 		i++;
-    
 		gp.monster[numMap][i] = new MON_Orc(gp);
-		gp.monster[numMap][i].worldX = gp.tileSize * 29;
-		gp.monster[numMap][i].worldY = gp.tileSize * 4;
+		gp.monster[numMap][i].worldX = gp.tileSize * 10;
+		gp.monster[numMap][i].worldY = gp.tileSize * 23;
 		i++;
-    
 		gp.monster[numMap][i] = new MON_Orc(gp);
-		gp.monster[numMap][i].worldX = gp.tileSize * 30;
-		gp.monster[numMap][i].worldY = gp.tileSize * 5;
+		gp.monster[numMap][i].worldX = gp.tileSize * 47;
+		gp.monster[numMap][i].worldY = gp.tileSize * 38;
 		i++;
-    
 		gp.monster[numMap][i] = new MON_Orc(gp);
-		gp.monster[numMap][i].worldX = gp.tileSize * 31;
-		gp.monster[numMap][i].worldY = gp.tileSize * 5;
+		gp.monster[numMap][i].worldX = gp.tileSize * 38;
+		gp.monster[numMap][i].worldY = gp.tileSize * 27;
 		i++;
-    
 		gp.monster[numMap][i] = new MON_Orc(gp);
-		gp.monster[numMap][i].worldX = gp.tileSize * 32;
-		gp.monster[numMap][i].worldY = gp.tileSize * 5;
+		gp.monster[numMap][i].worldX = gp.tileSize * 28;
+		gp.monster[numMap][i].worldY = gp.tileSize * 34;
 		i++;
-    
 		gp.monster[numMap][i] = new MON_Orc(gp);
-		gp.monster[numMap][i].worldX = gp.tileSize * 33;
-		gp.monster[numMap][i].worldY = gp.tileSize * 5;
+		gp.monster[numMap][i].worldX = gp.tileSize * 7;
+		gp.monster[numMap][i].worldY = gp.tileSize * 32;
 		i++;
-    
 		gp.monster[numMap][i] = new MON_Orc(gp);
-		gp.monster[numMap][i].worldX = gp.tileSize * 29;
-		gp.monster[numMap][i].worldY = gp.tileSize * 5;
+		gp.monster[numMap][i].worldX = gp.tileSize * 11;
+		gp.monster[numMap][i].worldY = gp.tileSize * 45;
 		i++;
-
 		gp.monster[numMap][i] = new MON_GreenSlime(gp);
 		gp.monster[numMap][i].worldX = gp.tileSize * 28;
 		gp.monster[numMap][i].worldY = gp.tileSize * 22;
