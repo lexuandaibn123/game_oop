@@ -6,25 +6,26 @@ import entity.Entity;
 import entity.Projectile;
 import main.GamePanel;
 
-public class OBJ_Fireball extends Projectile{
+public class OBJ_Fireball extends Projectile {
 
 	GamePanel gp;
-	
+
 	public OBJ_Fireball(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
-		
+
 		name = "Fireball";
 		speed = 3;
 		maxLife = 80;
 		life = maxLife;
-		attack = 2;
+		attack = 1;
 		useCost = 1;
 		alive = false;
 		getImage();
 		knockBackPower = 0;
-		
+
 	}
+
 	public void getImage() {
 		up1 = setup("/projectile/fireball_up_1", gp.tileSize, gp.tileSize);
 		up2 = setup("/projectile/fireball_up_2", gp.tileSize, gp.tileSize);
@@ -35,34 +36,38 @@ public class OBJ_Fireball extends Projectile{
 		right1 = setup("/projectile/fireball_right_1", gp.tileSize, gp.tileSize);
 		right2 = setup("/projectile/fireball_right_2", gp.tileSize, gp.tileSize);
 	}
-	
+
 	public boolean haveResource(Entity user) {
-		
-		boolean haveResource= false;
-		if(user.mana >= useCost) {
+
+		boolean haveResource = false;
+		if (user.mana >= useCost) {
 			haveResource = true;
 		}
-		
+
 		return haveResource;
-		
+
 	}
 
 	public void substractResource(Entity user) {
 		user.mana -= useCost;
-		
+
 	}
+
 	public Color getParticleColor() {
-		Color color = new Color(240,50,0);
+		Color color = new Color(240, 50, 0);
 		return color;
 	}
+
 	public int getParticleSize() {
 		int size = 11; // 6 pixels;
 		return size;
 	}
+
 	public int getParticleSpeed() {
 		int speed = 1;
 		return speed;
 	}
+
 	public int getParticleMaxLife() {
 		int maxLife = 20;
 		return maxLife;

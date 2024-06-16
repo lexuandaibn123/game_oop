@@ -3,6 +3,7 @@ package main;
 import entity.NPC_Goku;
 import entity.NPC_Merchant;
 import entity.NPC_OldMan;
+import monster.MON_Boss;
 import monster.MON_GreenSlime;
 import monster.MON_OrangeSlime;
 import monster.MON_Orc;
@@ -18,6 +19,7 @@ import object.OBJ_ManaCrystal;
 import object.OBJ_Potion_Red;
 import object.OBJ_Shield_Blue;
 import object.OBJ_Sword_Normal;
+import tile_interactive.IT_DestructibleWall;
 import tile_interactive.IT_DryTree;
 import tile_interactive.IT_Trunk;
 
@@ -76,7 +78,10 @@ public class AssetSetter {
 		gp.npc[numMap][i].worldX = gp.tileSize * 37;
 		gp.npc[numMap][i].worldY = gp.tileSize * 22;
 		i++;
-
+		gp.npc[numMap][i] = new NPC_Merchant(gp);
+		gp.npc[numMap][i].worldX = gp.tileSize * 5;
+		gp.npc[numMap][i].worldY = gp.tileSize * 5;
+		i++;
 		// Map 02
 		numMap = 1;
 		i = 0;
@@ -100,40 +105,41 @@ public class AssetSetter {
 		gp.monster[numMap][i].worldX = gp.tileSize * 30;
 		gp.monster[numMap][i].worldY = gp.tileSize * 4;
 		i++;
-    
-		gp.monster[numMap][i] = new MON_Orc(gp);
-		gp.monster[numMap][i].worldX = gp.tileSize * 32;
-		gp.monster[numMap][i].worldY = gp.tileSize * 4;
-		i++;
-    
-		gp.monster[numMap][i] = new MON_Orc(gp);
-		gp.monster[numMap][i].worldX = gp.tileSize * 33;
-		gp.monster[numMap][i].worldY = gp.tileSize * 4;
-		i++;
-		gp.monster[numMap][i] = new MON_Orc(gp);
-		gp.monster[numMap][i].worldX = gp.tileSize * 10;
-		gp.monster[numMap][i].worldY = gp.tileSize * 23;
-		i++;
-		gp.monster[numMap][i] = new MON_Orc(gp);
-		gp.monster[numMap][i].worldX = gp.tileSize * 47;
-		gp.monster[numMap][i].worldY = gp.tileSize * 38;
-		i++;
-		gp.monster[numMap][i] = new MON_Orc(gp);
-		gp.monster[numMap][i].worldX = gp.tileSize * 38;
-		gp.monster[numMap][i].worldY = gp.tileSize * 27;
-		i++;
-		gp.monster[numMap][i] = new MON_Orc(gp);
-		gp.monster[numMap][i].worldX = gp.tileSize * 28;
-		gp.monster[numMap][i].worldY = gp.tileSize * 34;
-		i++;
-		gp.monster[numMap][i] = new MON_Orc(gp);
-		gp.monster[numMap][i].worldX = gp.tileSize * 7;
-		gp.monster[numMap][i].worldY = gp.tileSize * 32;
-		i++;
-		gp.monster[numMap][i] = new MON_Orc(gp);
-		gp.monster[numMap][i].worldX = gp.tileSize * 11;
-		gp.monster[numMap][i].worldY = gp.tileSize * 45;
-		i++;
+		/*
+		 * gp.monster[numMap][i] = new MON_Orc(gp);
+		 * gp.monster[numMap][i].worldX = gp.tileSize * 32;
+		 * gp.monster[numMap][i].worldY = gp.tileSize * 4;
+		 * i++;
+		 * 
+		 * gp.monster[numMap][i] = new MON_Orc(gp);
+		 * gp.monster[numMap][i].worldX = gp.tileSize * 33;
+		 * gp.monster[numMap][i].worldY = gp.tileSize * 4;
+		 * i++;
+		 * gp.monster[numMap][i] = new MON_Orc(gp);
+		 * gp.monster[numMap][i].worldX = gp.tileSize * 10;
+		 * gp.monster[numMap][i].worldY = gp.tileSize * 23;
+		 * i++;
+		 * gp.monster[numMap][i] = new MON_Orc(gp);
+		 * gp.monster[numMap][i].worldX = gp.tileSize * 47;
+		 * gp.monster[numMap][i].worldY = gp.tileSize * 38;
+		 * i++;
+		 * gp.monster[numMap][i] = new MON_Orc(gp);
+		 * gp.monster[numMap][i].worldX = gp.tileSize * 38;
+		 * gp.monster[numMap][i].worldY = gp.tileSize * 27;
+		 * i++;
+		 * gp.monster[numMap][i] = new MON_Orc(gp);
+		 * gp.monster[numMap][i].worldX = gp.tileSize * 28;
+		 * gp.monster[numMap][i].worldY = gp.tileSize * 34;
+		 * i++;
+		 * gp.monster[numMap][i] = new MON_Orc(gp);
+		 * gp.monster[numMap][i].worldX = gp.tileSize * 7;
+		 * gp.monster[numMap][i].worldY = gp.tileSize * 32;
+		 * i++;
+		 * gp.monster[numMap][i] = new MON_Orc(gp);
+		 * gp.monster[numMap][i].worldX = gp.tileSize * 11;
+		 * gp.monster[numMap][i].worldY = gp.tileSize * 45;
+		 * i++;
+		 */
 		gp.monster[numMap][i] = new MON_GreenSlime(gp);
 		gp.monster[numMap][i].worldX = gp.tileSize * 28;
 		gp.monster[numMap][i].worldY = gp.tileSize * 22;
@@ -224,7 +230,7 @@ public class AssetSetter {
 		gp.monster[numMap][i].worldX = gp.tileSize * 29;
 		gp.monster[numMap][i].worldY = gp.tileSize * 4;
 		i++;
-	
+
 		gp.monster[numMap][i] = new MON_Orc(gp);
 		gp.monster[numMap][i].worldX = gp.tileSize * 30;
 		gp.monster[numMap][i].worldY = gp.tileSize * 5;
@@ -244,6 +250,14 @@ public class AssetSetter {
 		gp.monster[numMap][i] = new MON_Orc(gp);
 		gp.monster[numMap][i].worldX = gp.tileSize * 29;
 		gp.monster[numMap][i].worldY = gp.tileSize * 5;
+		i++;
+
+		// map 4
+		numMap = 3;
+		i = 0;
+		gp.monster[numMap][i] = new MON_Boss(gp);
+		gp.monster[numMap][i].worldX = gp.tileSize * 23;
+		gp.monster[numMap][i].worldY = gp.tileSize * 16;
 		i++;
 	}
 
@@ -287,6 +301,12 @@ public class AssetSetter {
 		gp.iTile[numMap][i] = new IT_DryTree(gp, 8, 17);
 		gp.iTile[numMap][i].defense = 10;
 		i++;
-		
+
+		// map 3
+		numMap = 2;
+		i = 0;
+		gp.iTile[numMap][i] = new IT_DestructibleWall(gp, 18, 30);
+		i++;
+
 	}
 }

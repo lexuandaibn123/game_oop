@@ -110,6 +110,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int outside = 50;
     public final int lavaZone = 51;
     public final int dungeon = 52;
+    public final int dungeon02 = 52;
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
