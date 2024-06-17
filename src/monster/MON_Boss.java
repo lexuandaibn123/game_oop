@@ -22,6 +22,7 @@ public class MON_Boss extends Entity {
 		boss = true;
 		name = "Skeleton Lord";
 
+		int size = gp.tileSize * 5;
 		defaultSpeed = 1;
 		speed = defaultSpeed;
 		maxLife = 50;
@@ -31,10 +32,10 @@ public class MON_Boss extends Entity {
 		exp = 50;
 		mana = 0;
 
-		solidArea.x = 4;
-		solidArea.y = 4;
-		solidArea.width = 40;
-		solidArea.height = 44;
+		solidArea.x = 48;
+		solidArea.y = 48;
+		solidArea.width = size - 48 * 2;
+		solidArea.height = size - 48;
 		solidAreaDefaultX = solidArea.x;
 		solidAreaDefaultY = solidArea.y;
 		attackArea.width = 48;
