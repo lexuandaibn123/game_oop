@@ -81,7 +81,7 @@ public class Player extends Entity {
 
 		// PLAYER STATUS
 		level = 1;
-		maxLife = 100;
+		maxLife = 6;
 		life = maxLife;
 		maxMana = 4;
 		mana = maxMana;
@@ -598,10 +598,14 @@ public class Player extends Entity {
 		direction = "down";
 	}
 
-	public void restoreLifeAndMan() {
+	public void restoreStatus() {
 		life = maxLife;
 		mana = maxMana;
 		invincible = false;
+		attacking = false;
+		transparent = false;
+		guarding = false;
+		knockBack = false;
 	}
 
 	public void selectItem() {
