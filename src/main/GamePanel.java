@@ -75,6 +75,7 @@ public class GamePanel extends JPanel implements Runnable {
     public EventHandler eHandler = new EventHandler(this);
     // Config config = new Config(this);
     public PathFinder pFinder = new PathFinder(this);
+    public cutsceneManager csManager = new cutsceneManager(this);
 
     Thread gameThread;
 
@@ -103,6 +104,10 @@ public class GamePanel extends JPanel implements Runnable {
     public final int tradeState = 8;
     public final int gameFinish = 9;
     public final int setPlayer = 10;
+    public final int cutsceneState = 11;
+
+    // other
+    public boolean bossBattleOn = false;
 
     // AREA
     public int currentArea;
@@ -137,6 +142,9 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void resetGame(boolean restart) {
+        currentArea = outside;
+        removeTempEntity();
+        bossBattleOn = false;
         player.setDefaultPosition();
         player.restoreStatus();
         aSetter.setNPC();
@@ -395,6 +403,9 @@ public class GamePanel extends JPanel implements Runnable {
             // EMPTY ENTITY LIST
             entityList.clear();
 
+            // cutscene
+            csManager.draw(g2);
+
             // UI
             ui.draw(g2);
         }
@@ -465,5 +476,17 @@ public class GamePanel extends JPanel implements Runnable {
             currentArea = nextArea;
         }
 
+    }
+
+    public void removeTempEntity() {
+
+        for (int mapNum = 0; mapNum < maxMap; mapNum++) {
+
+            for (int i = 0; i < obj[1].length; i++) {
+                if (obj[mapNum][i] != null && obj[mapNum][i].temp == true) {
+                    obj[mapNum][i] = null;
+                }
+            }
+        }
     }
 }

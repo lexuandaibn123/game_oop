@@ -2,13 +2,17 @@ package monster;
 
 import java.util.Random;
 
+import data.progress;
 import entity.Entity;
+import entity.PlayerDummy;
 import main.GamePanel;
 import object.OBJ_Coin_Bronze;
 import object.OBJ_Heart;
 import object.OBJ_Rock;
 
 public class MON_Boss extends Entity {
+
+	public static final String monName = "Skeleton Lord";
 
 	GamePanel gp;
 
@@ -20,7 +24,7 @@ public class MON_Boss extends Entity {
 
 		type = type_monster;
 		boss = true;
-		name = "Skeleton Lord";
+		name = monName;
 
 		int size = gp.tileSize * 5;
 		defaultSpeed = 1;
@@ -31,6 +35,8 @@ public class MON_Boss extends Entity {
 		defense = 2;
 		exp = 50;
 		mana = 0;
+		knockBackPower = 5;
+		sleep = true;
 
 		solidArea.x = 48;
 		solidArea.y = 48;
@@ -156,6 +162,21 @@ public class MON_Boss extends Entity {
 	}
 
 	public void checkDrop() {
+
+		// change mussic after boss die
+		gp.bossBattleOn = false;
+		progress.skeletonLordDefeated = true;
+		gp.stopMusic();
+		gp.playMusic(14);
+
+		// hide the iron door
+		for (int i = 0; i < gp.npc[1].length; i++) {
+			// if (gp.npc[gp.currentMap][i] == null &&
+			// gp.npc[gp.currentMap][i].name.equals(PlayerDummy.npcName)) {
+			gp.playSE(17);
+			gp.obj[gp.currentMap][i] = null;
+			// }
+		}
 
 		// CAST A DIE
 		int i = new Random().nextInt(100) + 1;

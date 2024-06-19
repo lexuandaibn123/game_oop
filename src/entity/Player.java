@@ -81,7 +81,7 @@ public class Player extends Entity {
 
 		// PLAYER STATUS
 		level = 1;
-		maxLife = 6;
+		maxLife = 60;
 		life = maxLife;
 		maxMana = 4;
 		mana = maxMana;
@@ -410,6 +410,11 @@ public class Player extends Entity {
 					gp.ui.currentDialogue = text;
 
 				}
+			} else if (gp.obj[gp.currentMap][i].type == type_door_iron) {
+				String text;
+				text = "It won't bugde";
+				gp.gameState = gp.dialogueState;
+				gp.ui.currentDialogue = text;
 			} else if (gp.obj[gp.currentMap][i].type == type_monster_die) {
 				collisionOn = false;
 			}
@@ -795,8 +800,10 @@ public class Player extends Entity {
 		if (transparent == true) {
 			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
 		}
+		if (drawing == true) {
 
-		g2.drawImage(image, x, y, null);
+			g2.drawImage(image, x, y, null);
+		}
 
 		// Reset alpha
 		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));

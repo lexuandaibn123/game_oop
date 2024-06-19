@@ -13,6 +13,7 @@ import object.OBJ_Boots;
 import object.OBJ_Chest;
 import object.OBJ_Coin_Bronze;
 import object.OBJ_Door;
+import object.OBJ_Door_Iron;
 import object.OBJ_Heart;
 import object.OBJ_Key;
 import object.OBJ_ManaCrystal;
@@ -62,6 +63,14 @@ public class AssetSetter {
 
 		gp.obj[numMap][i].worldX = gp.tileSize * 36;
 		gp.obj[numMap][i].worldY = gp.tileSize * 6;
+		i++;
+
+		numMap = 3;
+		i = 0;
+		gp.obj[numMap][i] = new OBJ_Door_Iron(gp);
+
+		gp.obj[numMap][i].worldX = gp.tileSize * 25;
+		gp.obj[numMap][i].worldY = gp.tileSize * 15;
 		i++;
 	}
 
