@@ -6,7 +6,9 @@ import data.progress;
 import entity.Entity;
 import entity.PlayerDummy;
 import main.GamePanel;
+import object.OBJ_BlueHeart;
 import object.OBJ_Coin_Bronze;
+import object.OBJ_Door_Iron;
 import object.OBJ_Heart;
 import object.OBJ_Rock;
 
@@ -175,6 +177,9 @@ public class MON_Boss extends Entity {
 			// gp.npc[gp.currentMap][i].name.equals(PlayerDummy.npcName)) {
 			gp.playSE(17);
 			gp.obj[gp.currentMap][i] = null;
+			gp.obj[gp.currentMap][i] = new OBJ_BlueHeart(gp);
+			gp.obj[gp.currentMap][i].worldX = gp.tileSize * 25;
+			gp.obj[gp.currentMap][i].worldY = gp.tileSize * 8;
 			// }
 		}
 

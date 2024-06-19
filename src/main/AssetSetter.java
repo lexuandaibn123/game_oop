@@ -1,5 +1,6 @@
 package main;
 
+import data.progress;
 import entity.NPC_Goku;
 import entity.NPC_Merchant;
 import entity.NPC_OldMan;
@@ -9,6 +10,7 @@ import monster.MON_OrangeSlime;
 import monster.MON_Orc;
 import monster.MON_RedSlime;
 import object.OBJ_Axe;
+import object.OBJ_BlueHeart;
 import object.OBJ_Boots;
 import object.OBJ_Chest;
 import object.OBJ_Coin_Bronze;
@@ -45,7 +47,6 @@ public class AssetSetter {
 		gp.obj[numMap][i].worldX = gp.tileSize * 16;
 		gp.obj[numMap][i].worldY = gp.tileSize * 17;
 		i++;
-
 		numMap = 1;
 		i = 0;
 		// gp.obj[numMap][i] = new OBJ_Chest(gp);
@@ -68,7 +69,6 @@ public class AssetSetter {
 		numMap = 3;
 		i = 0;
 		gp.obj[numMap][i] = new OBJ_Door_Iron(gp);
-
 		gp.obj[numMap][i].worldX = gp.tileSize * 25;
 		gp.obj[numMap][i].worldY = gp.tileSize * 15;
 		i++;
@@ -264,10 +264,13 @@ public class AssetSetter {
 		// map 4
 		numMap = 3;
 		i = 0;
-		gp.monster[numMap][i] = new MON_Boss(gp);
-		gp.monster[numMap][i].worldX = gp.tileSize * 23;
-		gp.monster[numMap][i].worldY = gp.tileSize * 16;
-		i++;
+
+		if (progress.skeletonLordDefeated == false) {
+			gp.monster[numMap][i] = new MON_Boss(gp);
+			gp.monster[numMap][i].worldX = gp.tileSize * 23;
+			gp.monster[numMap][i].worldY = gp.tileSize * 16;
+			i++;
+		}
 	}
 
 	public void setInteractiveTile() {
