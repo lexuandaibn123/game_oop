@@ -11,16 +11,15 @@ import object.OBJ_Rock;
 public class MON_Orc extends Entity{
 
 	GamePanel gp;
-public MON_Orc(GamePanel gp) {
-		
-		
+	public MON_Orc(GamePanel gp) {
+
 		super(gp);
-		 
+
 		this.gp = gp;
-		
+
 		type = type_monster;
 		name = "Orc";
-		
+
 		defaultSpeed = 1;
 		speed = defaultSpeed;
 		maxLife = 3;
@@ -29,8 +28,7 @@ public MON_Orc(GamePanel gp) {
 		defense = 1;
 		exp = 4;
 		mana = 0;
-		
-		
+
 		solidArea.x = 4;
 		solidArea.y = 4;
 		solidArea.width = 40;

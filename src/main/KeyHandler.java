@@ -252,7 +252,7 @@ public class KeyHandler implements KeyListener {
 					gp.tileM.loadMap("/maps/world03.txt", 0);
 					break;
 				case 1:
-					gp.tileM.loadMap("/maps/worldmap 2.txt", 1);
+					gp.tileM.loadMap("/maps/worldmap_2.txt", 1);
 					break;
 			}
 		}

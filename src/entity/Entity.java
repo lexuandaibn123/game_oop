@@ -620,11 +620,11 @@ public class Entity {
 
 	}
 
-	public void setKnockBack(Entity taget, Entity attacker, int knockBackPower) {
+	public void setKnockBack(Entity target, Entity attacker, int knockBackPower) {
 		this.attacker = attacker;
-		taget.knockBackDirection = attacker.direction;
-		taget.speed += knockBackPower;
-		taget.knockBack = true;
+		target.knockBackDirection = attacker.direction;
+		target.speed += knockBackPower;
+		target.knockBack = true;
 
 	}
 

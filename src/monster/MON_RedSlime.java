@@ -14,8 +14,7 @@ public class MON_RedSlime extends Entity {
 	Projectile projectile1, projectile2, projectile3;
 	
 	public MON_RedSlime(GamePanel gp) {
-		
-		
+
 		super(gp);
 		 
 		this.gp = gp;

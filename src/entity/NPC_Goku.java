@@ -42,7 +42,7 @@ public class NPC_Goku extends Entity{
 			
 		}
 		public void speak() {
-			gp.tileM.loadMap("worldmap 2.txt", 1);
+			gp.tileM.loadMap("worldmap_2.txt", 1);
 			setDialogue();
 			if(NVcounter >= 3) {
 				super.speak();

@@ -49,7 +49,7 @@ public class UI {
 			InputStream is = getClass().getResourceAsStream("/font/x12y16pxMaruMonica.ttf");
 			maruMonica = Font.createFont(Font.TRUETYPE_FONT, is);
 
-			is = getClass().getResourceAsStream("/font/Purisa Bold.ttf");
+			is = getClass().getResourceAsStream("/font/Purisa_Bold.ttf");
 			purisaB = Font.createFont(Font.TRUETYPE_FONT, is);
 
 		} catch (FontFormatException e) {
