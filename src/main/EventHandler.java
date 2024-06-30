@@ -1,5 +1,6 @@
 package main;
 
+import data.progress;
 import entity.Entity;
 import object.OBJ_Axe;
 import tile_interactive.IT_DryTree;
@@ -73,7 +74,7 @@ public class EventHandler {
 				}
 			}
 
-			else if (hit(1, 1, 24, "left") == true || hit(1, 1, 25, "left") == true) {
+			else if (hit(1, 1, 24, "any") == true || hit(1, 1, 25, "left") == true) {
 
 				teleport(0, 48, 44, gp.outside);
 			} else if (hit(0, 1, 4, "any") == true) {
@@ -84,16 +85,16 @@ public class EventHandler {
 			else if (hit(2, 9, 41, "any") == true) {
 
 				teleport(0, 1, 4, gp.outside);
-			}
+			} else if (hit(2, 8, 7, "any") == true) {
 
-			else if (hit(1, 28, 1, "any") == true || hit(1, 28, 2, "any") == true) {
-				close();
-			} else if (hit(1, 18, 42, "left") == true) {
-				telePortInMap(1, 10, 48, gp.dialogueState);
-			} else if (hit(1, 5, 38, "any") == true) {
-				telePortInMap(1, 17, 42, gp.dialogueState);
-			}
+				teleport(3, 26, 41, gp.dungeon02);
+			} else if (hit(3, 26, 41, "any") == true) {
 
+				teleport(2, 8, 7, gp.dungeon);
+			} else if (hit(3, 25, 27, "any") == true) {
+
+				skeletonLord();
+			}
 		}
 
 	}
@@ -182,6 +183,14 @@ public class EventHandler {
 			gp.gameState = gp.dialogueState;
 			gp.player.attackCanceled = true;
 			entity.speak();
+		}
+	}
+
+	public void skeletonLord() {
+
+		if (gp.bossBattleOn == false && progress.skeletonLordDefeated == false) {
+			gp.gameState = gp.cutsceneState;
+			gp.csManager.sceneNum = gp.csManager.skeletonLord;
 		}
 	}
 

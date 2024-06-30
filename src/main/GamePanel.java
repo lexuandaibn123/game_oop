@@ -75,6 +75,7 @@ public class GamePanel extends JPanel implements Runnable {
     public EventHandler eHandler = new EventHandler(this);
     // Config config = new Config(this);
     public PathFinder pFinder = new PathFinder(this);
+    public cutsceneManager csManager = new cutsceneManager(this);
 
     Thread gameThread;
 
@@ -103,6 +104,10 @@ public class GamePanel extends JPanel implements Runnable {
     public final int tradeState = 8;
     public final int gameFinish = 9;
     public final int setPlayer = 10;
+    public final int cutsceneState = 11;
+
+    // other
+    public boolean bossBattleOn = false;
 
     // AREA
     public int currentArea;
@@ -110,6 +115,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int outside = 50;
     public final int lavaZone = 51;
     public final int dungeon = 52;
+    public final int dungeon02 = 52;
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -135,25 +141,25 @@ public class GamePanel extends JPanel implements Runnable {
 
     }
 
-    public void retry() {
+    public void resetGame(boolean restart) {
 
+        stopMusic();
+        currentArea = outside;
+        removeTempEntity();
+        bossBattleOn = false;
         player.setDefaultPosition();
-        player.restoreLifeAndMan();
+        player.restoreStatus();
         aSetter.setNPC();
         aSetter.setMonster();
-    }
 
-    public void restart() {
+        if (restart == true) {
+            player.setDefaultValues();
+            player.setItems();
+            aSetter.setObject();
+            aSetter.setInteractiveTile();
+            player.getPlayerImage();
+        }
 
-        player.setDefaultValues();
-        player.setDefaultPosition();
-        player.restoreLifeAndMan();
-        player.setItems();
-        aSetter.setObject();
-        aSetter.setNPC();
-        aSetter.setMonster();
-        aSetter.setInteractiveTile();
-        player.getPlayerImage();
     }
 
     public void setFullScreen() {
@@ -399,6 +405,9 @@ public class GamePanel extends JPanel implements Runnable {
             // EMPTY ENTITY LIST
             entityList.clear();
 
+            // cutscene
+            csManager.draw(g2);
+
             // UI
             ui.draw(g2);
         }
@@ -469,5 +478,17 @@ public class GamePanel extends JPanel implements Runnable {
             currentArea = nextArea;
         }
 
+    }
+
+    public void removeTempEntity() {
+
+        for (int mapNum = 0; mapNum < maxMap; mapNum++) {
+
+            for (int i = 0; i < obj[1].length; i++) {
+                if (obj[mapNum][i] != null && obj[mapNum][i].temp == true) {
+                    obj[mapNum][i] = null;
+                }
+            }
+        }
     }
 }
